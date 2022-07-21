@@ -15,7 +15,7 @@ const linking: LinkingOptions<RootStackParamList> = {
     screens: {
       Root: {
         screens: {
-          Module: {
+          Topics: {
             screens: {
               TabOneScreen: 'one',
             },
@@ -24,7 +24,7 @@ const linking: LinkingOptions<RootStackParamList> = {
             screens: {
               TabTwoScreen: 'two',
             },
-          },
+          } 
         },
       },
       // Modal: 'modal',
