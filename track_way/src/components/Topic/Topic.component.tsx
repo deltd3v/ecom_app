@@ -1,23 +1,23 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, Pressable } from 'react-native'
 import React from 'react'
 import Colors from '../../constants/Colors'
 import { TopicT } from './topic.data'
 import ProgressCircle from '../ProgressCircle'
 import { useWindowDimensions } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
-const Topic: React.FC<{ isUnlocked: boolean; currentLevel: number; } & TopicT> = (p) => {
+const Topic: React.FC<{ locked: boolean; currentLevel: number; } & TopicT> = (p) => {
     const { width, height } = useWindowDimensions()
-
+    const nav = useNavigation()
     function getCircleTheme() {
-        if (p.isUnlocked) {
-            if (p.progress >= 1) {
+        if (p.locked == false) {
+            if (p.progress >= 1 || p.progress >= p.currentLevel) {
                 return Colors.light.primary
             }
-            if (p.progress>=.1 && p.progress < 1) {
+            if (p.progress >= .1 && p.progress <= .9) {
                 return Colors.light.tertiary
 
             }
-            return Colors.light.dark
 
         }
         return Colors.light.dark
@@ -25,8 +25,12 @@ const Topic: React.FC<{ isUnlocked: boolean; currentLevel: number; } & TopicT> =
 
 
     }
+
+    function onPress() {
+        nav.navigate('Topic', { id: p.id?.toString()! })
+    }
     return (
-        <View style={[styles.container, { width: width / 3 - 30 }]}>
+        <Pressable disabled={p.locked} onPress={onPress} style={[styles.container, { width: width / 3 - 30 }]}>
             {/* progress ring */}
             <View style={styles.progress}>
 
@@ -53,7 +57,7 @@ const Topic: React.FC<{ isUnlocked: boolean; currentLevel: number; } & TopicT> =
 
             {/* topic title */}
             <Text style={styles.title}>{p.title}</Text>
-        </View>
+        </Pressable>
     )
 }
 

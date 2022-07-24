@@ -9,32 +9,33 @@ import { getCurrentActiveLevel } from '../../components/Topic/getCurrentActiveLe
 const TopicsScreen = () => {
   const [levels, setLevels] = useState([] as TopicT[][]);
 
-  const [currentLevel, setCurrentLevel] = useState(0);
+  const [currentLevel, setCurrentLevel] = useState(1);
 
-  useEffect(() => {
+  useEffect(() => { 
     setLevels(groupByLevel(topics))
     setCurrentLevel(getCurrentActiveLevel(levels))
-  }, [])
+    console.log('currentLevel', currentLevel)
+  }, [currentLevel]) 
 
   return (
-    
+
     <View style={styles.container}>
-      <Text>{ currentLevel }</Text>
+      {/*  <Text>{ currentLevel }</Text> */}
       <FlatList
-        data={levels} 
+        data={levels}
         bounces={true}
         showsVerticalScrollIndicator={false}
 
         renderItem={({ item: level }) =>
-          <TopicsGroupRow>
+          <TopicsGroupRow>  
 
             {
-              level && level.map((topic, i) => (  
-                <Topic key={i} isUnlocked={topic.level < currentLevel} currentLevel={currentLevel} {...topic} />
+              level && level.map((topic, i) => (
+                <Topic key={i} locked={currentLevel < topic.level  } currentLevel={currentLevel} {...topic} />
               ))
-            } 
+            }
           </TopicsGroupRow>}
-      /> 
+      />
 
 
     </View>
