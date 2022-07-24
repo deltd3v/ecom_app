@@ -2,27 +2,33 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import Colors from '../../constants/Colors'
 import { TopicT } from './topic.data'
+ import ProgressCircle from '../ProgressCircle'
+import { useWindowDimensions } from 'react-native'
 
 const Topic: React.FC<{ isUnlocked: boolean } & TopicT> = (p) => {
+    const { width, height } = useWindowDimensions()
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { width: width / 3 - 30 }]}>
             {/* progress ring */}
-            <View style={[styles.progressRing, {
-                borderColor: p.isUnlocked ? Colors.light.primary : Colors.light.dark,
-                backgroundColor: p.isUnlocked ? Colors.light.primary : Colors.light.dark,
+            <View style={styles.progress}>
 
-            }]}>
+                <ProgressCircle
+                    bgColor={Colors.light.background}
+                    pgColor={Colors.light.secondary}
+                    strokeWidth={8}
+                    size={width / 3 - 30}
+                    progressPercent={p.progress}
+                />
 
-                {/* topic circle */}
-                <View style={[styles.circle, {
-                    backgroundColor: p.isUnlocked ? Colors.light.primary : Colors.light.dark,
-                    borderColor: Colors.light.background,
+                    {/* topic circle */}
+                    <View style={[styles.circle, { width: (width / 3 - 30) - 20,backgroundColor: p.isUnlocked ? Colors.light.primary  : Colors.light.dark}]}>
+                        <Image style={styles.img} source={{
+                            uri: p.imgUri
+                        }} />
+                    </View>   
+                    
 
-                }]}>
-                    <Image style={styles.img} source={{
-                        uri: p.imgUri
-                    }} /> 
-                </View>
+
             </View>
 
             {/* topic title */}
@@ -35,35 +41,30 @@ export default Topic
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'column',
-        alignItems: 'center',
-        margin: 10,
-        width: "30%",
         maxWidth: 150,
-    },
-    progressRing: {
-        borderWidth: 1,
-        borderRadius: 999,
-        padding: 10,
+        margin: 10,
+        alignItems: 'center',
+     },
+    progress: {
+        width: "100%",
+        aspectRatio: 1,
+        justifyContent: 'center'
     },
     circle: {
-        // backgroundColor: Colors.light.tertiary,
-        backgroundColor: "white",
-        borderWidth: 2,
+        alignSelf: 'center',
         borderRadius: 999,
         aspectRatio: 1,
-        width: "100%",
         justifyContent: "center",
         alignItems: "center",
     },
     img: {
-        width: "100%",
+        width: "50%",
         aspectRatio: 1,
     },
     title: {
         color: Colors.light.dark,
         textAlign: 'center',
-        marginVertical: 10,
+        marginVertical: 5,
         fontSize: 16,
         fontWeight: "500",
     },

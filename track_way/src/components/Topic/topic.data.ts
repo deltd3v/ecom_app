@@ -16,7 +16,7 @@ export const topics: TopicT[] = ([
         imgUri: "https://upload.wikimedia.org/wikipedia/commons/c/c9/Black_star.png",
         // imgUri: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Star-.svg/180px-Star-.svg.png",  
         level: 0,
-        progress: 1
+        progress: .3 
     }, 
     {
         id: "0",

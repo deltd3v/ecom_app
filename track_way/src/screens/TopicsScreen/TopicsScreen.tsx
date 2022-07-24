@@ -17,8 +17,8 @@ const TopicsScreen = () => {
   }, [])
 
   return (
+    
     <View style={styles.container}>
-      <Text>{currentLevel}</Text>
       <FlatList
         data={levels} 
         bounces={true}
