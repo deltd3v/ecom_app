@@ -2,11 +2,29 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import Colors from '../../constants/Colors'
 import { TopicT } from './topic.data'
- import ProgressCircle from '../ProgressCircle'
+import ProgressCircle from '../ProgressCircle'
 import { useWindowDimensions } from 'react-native'
 
-const Topic: React.FC<{ isUnlocked: boolean } & TopicT> = (p) => {
+const Topic: React.FC<{ isUnlocked: boolean; currentLevel: number; } & TopicT> = (p) => {
     const { width, height } = useWindowDimensions()
+
+    function getCircleTheme() {
+        if (p.isUnlocked) {
+            if (p.progress >= 1) {
+                return Colors.light.primary
+            }
+            if (p.progress>=.1 && p.progress < 1) {
+                return Colors.light.tertiary
+
+            }
+            return Colors.light.dark
+
+        }
+        return Colors.light.dark
+
+
+
+    }
     return (
         <View style={[styles.container, { width: width / 3 - 30 }]}>
             {/* progress ring */}
@@ -14,19 +32,21 @@ const Topic: React.FC<{ isUnlocked: boolean } & TopicT> = (p) => {
 
                 <ProgressCircle
                     bgColor={Colors.light.background}
-                    pgColor={Colors.light.secondary}
+                    pgColor={p.progress >= 1 ? Colors.light.primary : Colors.light.tertiary}
                     strokeWidth={8}
                     size={width / 3 - 30}
                     progressPercent={p.progress}
                 />
 
-                    {/* topic circle */}
-                    <View style={[styles.circle, { width: (width / 3 - 30) - 20,backgroundColor: p.isUnlocked ? Colors.light.primary  : Colors.light.dark}]}>
-                        <Image style={styles.img} source={{
-                            uri: p.imgUri
-                        }} />
-                    </View>   
-                    
+                {/* topic circle */}
+                <View style={[styles.circle, {
+                    width: (width / 3 - 30) - 20, backgroundColor: getCircleTheme()
+                }]}>
+                    <Image style={styles.img} source={{
+                        uri: p.imgUri
+                    }} />
+                </View>
+
 
 
             </View>
@@ -44,11 +64,11 @@ const styles = StyleSheet.create({
         maxWidth: 150,
         margin: 10,
         alignItems: 'center',
-     },
+    },
     progress: {
         width: "100%",
         aspectRatio: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     circle: {
         alignSelf: 'center',

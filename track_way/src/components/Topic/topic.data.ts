@@ -2,7 +2,7 @@ import { groupByLevel } from "./groupByLevel.util";
 
  
 export type TopicT = {
-    id: string | number;
+    id?: string | number;
     title: string | number;
     imgUri: string ;
     level:   number;
@@ -11,132 +11,61 @@ export type TopicT = {
   
 export const topics: TopicT[] = ([
     {
-        id: "0",
         title: "Topic 0",
         imgUri: "https://upload.wikimedia.org/wikipedia/commons/c/c9/Black_star.png",
         // imgUri: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Star-.svg/180px-Star-.svg.png",  
         level: 0,
-        progress: .3 
+        progress: 1 
     }, 
     {
-        id: "0",
-        title: "Topic 0",
+        title: "Topic 1",
         imgUri: "https://upload.wikimedia.org/wikipedia/commons/c/c9/Black_star.png",
         // imgUri: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Star-.svg/180px-Star-.svg.png",
         level: 1,
-        progress: 0
+        progress: 1
     }, 
     {
-        id: "0",
-        title: "Topic 0",
+        title: "Topic 2",
         imgUri: "https://upload.wikimedia.org/wikipedia/commons/c/c9/Black_star.png",
         // imgUri: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Star-.svg/180px-Star-.svg.png",
         level: 1,
-        progress: 0
+        progress: .7
     }, 
     {
-        id: "0",
-        title: "Topic 0",
+        title: "Topic 3",
         imgUri: "https://upload.wikimedia.org/wikipedia/commons/c/c9/Black_star.png",
         // imgUri: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Star-.svg/180px-Star-.svg.png",
         level: 2,
         progress: 0
     }, 
     {
-        id: "0",
-        title: "Topic 0",
+        title: "Topic 4",
         imgUri: "https://upload.wikimedia.org/wikipedia/commons/c/c9/Black_star.png",
         // imgUri: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Star-.svg/180px-Star-.svg.png",
         level: 3,
         progress: 0
     }, 
     {
-        id: "0",
-        title: "Topic 0",
+        title: "Topic 5",
         imgUri: "https://upload.wikimedia.org/wikipedia/commons/c/c9/Black_star.png",
         // imgUri: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Star-.svg/180px-Star-.svg.png",
         level: 3,
         progress: 0
     }, 
     {
-        id: "0",
-        title: "Topic 0",
-        imgUri: "https://upload.wikimedia.org/wikipedia/commons/c/c9/Black_star.png",
-        // imgUri: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Star-.svg/180px-Star-.svg.png",
-        level: 3,
-        progress: 0
-    }, 
-    {
-        id: "0",
-        title: "Topic 0",
+        title: "Topic 6",
         imgUri: "https://upload.wikimedia.org/wikipedia/commons/c/c9/Black_star.png",
         // imgUri: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Star-.svg/180px-Star-.svg.png",
         level: 4,
         progress: 0
     }, 
-    // {
-    //     id: "1",
-    //     title: "Topic 1",
-    //     imgUri: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Star-.svg/180px-Star-.svg.png",
-    //     level: 1,
-    //     progress: 0
-    // },
-    // {
-    //     id: "2",
-    //     title: "Topic 2",
-    //             imgUri: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Star-.svg/180px-Star-.svg.png",
-
-    //     level: 1,
-    //     progress: 0
-    // },
-    // {
-    //     id: "3",
-    //     title: "Topic 3",
-    //             imgUri: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Star-.svg/180px-Star-.svg.png",
-
-    //     level: 2,
-    //     progress: 0
-    // },
-    // {
-    //     id: "4",
-    //     title: "Topic 4",
-    //             imgUri: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Star-.svg/180px-Star-.svg.png",
-
-    //     level: 2,
-    //     progress: 0
-    // },
-    // {
-    //     id: "5",
-    //     title: "Topic 5",
-    //             imgUri: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Star-.svg/180px-Star-.svg.png",
-
-    //     level: 2,
-    //     progress: 0
-    // },
-    // {
-    //     id: "6",
-    //     title: "Topic 6",
-    //             imgUri: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Star-.svg/180px-Star-.svg.png",
-
-    //     level: 3,
-    //     progress: 0
-    // },
-    // {
-    //     id: "7",
-    //     title: "Topic 7",
-    //             imgUri: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Star-.svg/180px-Star-.svg.png",
-
-    //     level: 4,
-    //     progress: 0
-    // },
-    // {
-    //     id: "8",
-    //     title: "Topic 8",
-    //             imgUri: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Star-.svg/180px-Star-.svg.png",
-
-    //     level: 4,
-    //     progress: 0
-    // },
+    {
+        title: "Topic 7",
+        imgUri: "https://upload.wikimedia.org/wikipedia/commons/c/c9/Black_star.png",
+        // imgUri: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Star-.svg/180px-Star-.svg.png",
+        level: 4,
+        progress: 0
+    } 
 ])
 
 export const levels = groupByLevel(topics)

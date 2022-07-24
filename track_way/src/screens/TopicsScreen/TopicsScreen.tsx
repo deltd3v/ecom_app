@@ -19,6 +19,7 @@ const TopicsScreen = () => {
   return (
     
     <View style={styles.container}>
+      <Text>{ currentLevel }</Text>
       <FlatList
         data={levels} 
         bounces={true}
@@ -29,7 +30,7 @@ const TopicsScreen = () => {
 
             {
               level && level.map((topic, i) => (  
-                <Topic key={i} isUnlocked={topic.level < currentLevel} {...topic} />
+                <Topic key={i} isUnlocked={topic.level < currentLevel} currentLevel={currentLevel} {...topic} />
               ))
             } 
           </TopicsGroupRow>}

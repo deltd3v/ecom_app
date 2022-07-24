@@ -8,7 +8,7 @@ export const groupByLevel = (topics: TopicT[]) => {
     let levels: TopicT[][] = [];
     // [ [level-0], [level-1], .. ]
 
-    topics.forEach((t) =>  levels[t.level] ? (levels[t.level] = [t, ...levels[t.level]]) : (levels[t.level] = [t]));
+    topics.forEach((t, i) => levels[t.level] ? (levels[t.level] = [...levels[t.level], { id: i, ...t }]) : (levels[t.level] = [{ id: i, ...t }]));
        
     return levels
 }
