@@ -13,12 +13,34 @@ const TopicResourceItem: React.FC<{ idx?: number, isFinal?: boolean; } & TopicRe
 
     return (
         <Pressable onPress={onPress} style={styles.container}>
-            <View style={[styles.idxContainer, p.completed ? styles.completed : {}]}>{p.completed ? <Feather name="check" color={Colors.light.white} style={{ fontSize: 20 }} /> :
-                <Text style={styles.idxTitle}>{p.idx! + 1}</Text>}
+            <View style={[
+                styles.idxContainer,
+                p.completed ?
+                    styles.completed :
+                    {}
+            ]}>{
+                    p.completed ?
+                        <Feather
+                            name="check"
+                            color={Colors.light.white}
+                            style={{ fontSize: 20 }} /> :
+                        <Text style={styles.idxTitle}>
+                            {p.idx! + 1}
+                        </Text>}
             </View>
             <Text>{p.title}</Text>
             <Feather style={styles.icon} name="share" />
-            {!p.isFinal && <View style={[styles.vertLine, { backgroundColor: p.completed ? Colors.light.primary : Colors.light.dark }]}></View>}
+            {!p.isFinal &&
+                <View
+                    style={[
+                        styles.vertLine,
+                        {
+                            backgroundColor: p.completed ?
+                                Colors.light.primary :
+                                Colors.light.dark
+                        }]}>
+                </View>
+            }
         </Pressable>
     )
 }
@@ -28,7 +50,7 @@ export default TopicResourceItem
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        marginVertical: 10,
+        marginBottom: 20,
         alignItems: 'center',
     },
     idxContainer: {

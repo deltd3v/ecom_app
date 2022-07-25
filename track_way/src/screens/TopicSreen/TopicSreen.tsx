@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Colors from '../../constants/Colors'
 import TopicResourceItem from '../../components/TopicResourceItem'
@@ -7,6 +7,8 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { topics } from '../../components/Topic/topic.data'
 import { TopicT } from '../../types/models'
 import { useNavigation } from '@react-navigation/native'
+import Markdown from 'react-native-markdown-display'
+import TopicResourseSection from '../../components/TopicResourseSection'
 export type Props = NativeStackScreenProps<RootStackParamList, 'Topic'>;
 
 const TopicSreen: React.FC<Props> = (p) => {
@@ -20,11 +22,35 @@ const TopicSreen: React.FC<Props> = (p) => {
 
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Topic Content </Text>
+    <ScrollView style={styles.container}>
 
-      {topic?.resources?.map((r, i) => <TopicResourceItem isFinal={i + 1 == topic.resources?.length} idx={i} key={r.id} {...r} />)}
-    </View>
+      <TopicResourseSection visible={!!topic?.description} title="Description" >
+        <Markdown>{
+          topic?.description
+        }</Markdown>
+      </TopicResourseSection>
+
+      <TopicResourseSection visible={!!topic?.material} title="Material" >
+        {topic?.material?.map((r, i) =>
+          <TopicResourceItem isFinal={i + 1 == topic.material?.length} idx={i} key={r.id} {...r} />
+        )}
+      </TopicResourseSection>
+
+
+      <TopicResourseSection visible={!!topic?.ctxt} title="Context" >
+        <Markdown>{
+          topic?.ctxt
+        }</Markdown>
+      </TopicResourseSection>
+
+      <TopicResourseSection visible={!!topic?.exercises} title="Exercises" >
+        {topic?.exercises && topic?.exercises?.map((r, i) =>
+          <TopicResourceItem isFinal={i + 1 == topic.exercises?.length} idx={i} key={r.id} {...r} />
+        )}
+      </TopicResourseSection>
+
+
+    </ScrollView>
   )
 }
 
@@ -37,8 +63,10 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.light.white,
   },
   title: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: "600",
     letterSpacing: 1.5,
+    marginTop: 25,
+    marginBottom: 10,
   },
 }) 

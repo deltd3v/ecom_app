@@ -4,7 +4,10 @@ export type TopicT = {
     imgUri: string;
     level: number;
     progress: number;
-    resources?: TopicResourceItemT[]
+    description?: string;
+    ctxt?: string;
+    material?: TopicResourceItemT[]
+    exercises?: TopicResourceItemT[]
 }
 
 export type TopicResourceItemT = {

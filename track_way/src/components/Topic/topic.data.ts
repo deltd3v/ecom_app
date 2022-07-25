@@ -13,12 +13,39 @@ export const topics: TopicT[] = ([
         // imgUri: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Star-.svg/180px-Star-.svg.png",  
         level: 1,
         progress: 1,
-        resources: [
+        ctxt: `*Intro* includes some material, a short, warm  and welcoming introductory material into the world of web development. We wish you the best of luck, in your pursuit of growth & fulfilment ! Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae mollitia, maxime sed quis sunt qui voluptatum cum ratione Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure quos voluptatem corporis alias totam repellendus, magnam dolore quia, suscipit veritatis corrupti. Dolorum tenetur, error omnis sunt modi odio molestiae? Quaerat ullam praesentium quibusdam, itaque consectetur rerum nesciunt enim ipsa eum. Totam nemo accusamus doloremque voluptate tempora aliquam deleniti sed a? deleniti placeat illum vel enim, obcaecati delectus optio quidem, itaque ut! At?
+\`\`\` js
+    const msg = "Hello World"\`\`\``,
+        description:
+            `*Intro* includes some material, a short, warm  and welcoming introductory material into the world of web development. We wish you the best of luck, in your pursuit of growth & fulfilment !`,
+        material: [
             {
                 id: "1",
                 title: "Getting Started",
                 url: "https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web",
                 completed: true
+            },
+            {
+                id: "2",
+                title: "Installing Basic software",
+                url: "https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/Installing_basic_software#installing_a_text_editor"
+                ,
+                completed: false
+            },
+            {
+                id: "3",
+                title: "What will your website look like ?",
+                url: "https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/What_will_your_website_look_like"
+                ,
+                completed: false
+            },
+        ],
+        exercises: [
+            {
+                id: "1",
+                title: "Getting Started",
+                url: "https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web",
+                completed: false
             },
             {
                 id: "2",
