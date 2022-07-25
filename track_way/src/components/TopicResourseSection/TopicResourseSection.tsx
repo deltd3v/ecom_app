@@ -3,9 +3,11 @@ import React from 'react'
 import Colors from '../../constants/Colors';
 
 const TopicResourseSection: React.FC<{ title?: string; visible?: boolean; }> = (p) => {
+
+
     return p.visible ? <View style={styles.container}>
         {p.title && <Text style={styles.title}> {p.title}</Text>}
-        <>{p.children != undefined && p.children}</>
+        {p.children || <></>}
     </View>
         : null
 }

@@ -2,11 +2,10 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Colors from '../../constants/Colors'
 import TopicResourceItem from '../../components/TopicResourceItem'
-import { RootStackParamList, RootStackScreenProps } from '../../types/types.d'
+import { RootStackParamList } from '../../types/types.d'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { topics } from '../../components/Topic/topic.data'
 import { TopicT } from '../../types/models'
-import { useNavigation } from '@react-navigation/native'
 import Markdown from 'react-native-markdown-display'
 import TopicResourseSection from '../../components/TopicResourseSection'
 export type Props = NativeStackScreenProps<RootStackParamList, 'Topic'>;
@@ -25,22 +24,22 @@ const TopicSreen: React.FC<Props> = (p) => {
     <ScrollView style={styles.container}>
 
       <TopicResourseSection visible={!!topic?.description} title="Description" >
-        <Markdown>{
+        {topic?.description && <Markdown>{
           topic?.description
-        }</Markdown>
+        }</Markdown>}
       </TopicResourseSection>
 
       <TopicResourseSection visible={!!topic?.material} title="Material" >
-        {topic?.material?.map((r, i) =>
+        {topic?.material && topic?.material.map((r, i) =>
           <TopicResourceItem isFinal={i + 1 == topic.material?.length} idx={i} key={r.id} {...r} />
         )}
       </TopicResourseSection>
 
 
       <TopicResourseSection visible={!!topic?.ctxt} title="Context" >
-        <Markdown>{
+        {topic?.ctxt && <Markdown>{
           topic?.ctxt
-        }</Markdown>
+        }</Markdown>}
       </TopicResourseSection>
 
       <TopicResourseSection visible={!!topic?.exercises} title="Exercises" >
