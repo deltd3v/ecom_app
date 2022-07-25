@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native'
 import React from 'react'
 import Colors from '../../constants/Colors'
-import { TopicT } from './topic.data'
 import ProgressCircle from '../ProgressCircle'
 import { useWindowDimensions } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+import { TopicT } from '../../types/models'
 
 const Topic: React.FC<{ locked: boolean; currentLevel: number; } & TopicT> = (p) => {
     const { width, height } = useWindowDimensions()

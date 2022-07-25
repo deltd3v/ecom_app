@@ -2,20 +2,20 @@ import { StyleSheet, FlatList, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Topic from '../../components/Topic'
 import TopicsGroupRow from '../../components/TopicsGroupRow'
-import { topics, TopicT } from '../../components/Topic/topic.data'
+import { topics } from '../../components/Topic/topic.data'
 import { groupByLevel } from '../../components/Topic/groupByLevel.util'
 import { getCurrentActiveLevel } from '../../components/Topic/getCurrentActiveLevel.util'
+import { TopicT } from '../../types/models'
 
 const TopicsScreen = () => {
   const [levels, setLevels] = useState([] as TopicT[][]);
 
   const [currentLevel, setCurrentLevel] = useState(1);
 
-  useEffect(() => { 
+  useEffect(() => {
     setLevels(groupByLevel(topics))
     setCurrentLevel(getCurrentActiveLevel(levels))
-    console.log('currentLevel', currentLevel)
-  }, [currentLevel]) 
+  }, [currentLevel])
 
   return (
 
@@ -27,11 +27,11 @@ const TopicsScreen = () => {
         showsVerticalScrollIndicator={false}
 
         renderItem={({ item: level }) =>
-          <TopicsGroupRow>  
+          <TopicsGroupRow>
 
             {
               level && level.map((topic, i) => (
-                <Topic key={i} locked={currentLevel < topic.level  } currentLevel={currentLevel} {...topic} />
+                <Topic key={i} locked={currentLevel < topic.level} currentLevel={currentLevel} {...topic} />
               ))
             }
           </TopicsGroupRow>}

@@ -17,10 +17,10 @@ import useColorScheme from '../hooks/useColorScheme';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import ModuleScreen from '../screens/TopicsScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../../types';
+import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types/types.d';
 import LinkingConfiguration from './LinkingConfiguration';
 import TopicSreen from '../screens/TopicSreen';
- 
+
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
     <NavigationContainer
@@ -43,7 +43,7 @@ function RootNavigator() {
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="Topic" component={TopicSreen} options={{ title: 'Topic' }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-     {/*  <Stack.Group screenOptions={{ presentation: 'modal' }}>
+      {/*  <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group> */}
     </Stack.Navigator>
@@ -70,7 +70,7 @@ function BottomTabNavigator() {
         component={ModuleScreen}
         options={({ navigation }: RootTabScreenProps<'Topics'>) => ({
           title: 'Topics',
-          tabBarIcon: ({ color }) => <Feather name="disc" size={24} color={color ||"black"} />, 
+          tabBarIcon: ({ color }) => <Feather name="disc" size={24} color={color || "black"} />,
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Topics')}
@@ -95,7 +95,7 @@ function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <Feather name="user" size={24} color={color} />,
         }}
       />
-     
+
     </BottomTab.Navigator>
   );
 }
