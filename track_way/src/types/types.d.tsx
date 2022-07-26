@@ -2,38 +2,36 @@
  * Learn more about using TypeScript with React Navigation:
  * https://reactnavigation.org/docs/typescript/
  */
-
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
+import {
+	CompositeScreenProps,
+	NavigatorScreenParams,
+} from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 declare global {
-  namespace ReactNavigation {
-    interface RootParamList extends RootStackParamList { }
-  }
+	namespace ReactNavigation {
+		interface RootParamList extends RootStackParamList {}
+	}
 }
 
 export type RootStackParamList = {
-  Root: NavigatorScreenParams<RootTabParamList> | undefined;
-  NotFound: undefined;
-  Topic: { id: string };
-  Quiz: { id: string };
+	Root: NavigatorScreenParams<RootTabParamList> | undefined;
+	NotFound: undefined;
+	Topic: { id: string };
+	Quiz: { id: string };
 };
 
-
-export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
-  RootStackParamList,
-  Screen
->;
+export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
+	NativeStackScreenProps<RootStackParamList, Screen>;
 
 export type RootTabParamList = {
-  Topics: undefined;
-  Profile: undefined;
+	Topics: undefined;
+	Profile: undefined;
 };
 
-export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
-  BottomTabScreenProps<RootTabParamList, Screen>,
-  NativeStackScreenProps<RootStackParamList>
->;
-
-
+export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
+	CompositeScreenProps<
+		BottomTabScreenProps<RootTabParamList, Screen>,
+		NativeStackScreenProps<RootStackParamList>
+	>;

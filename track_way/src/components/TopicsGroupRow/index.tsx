@@ -1,1 +1,1 @@
-export { default } from './TopicsGroupRow'
+export { default } from './TopicsGroupRow';

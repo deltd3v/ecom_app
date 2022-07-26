@@ -1,1 +1,1 @@
-export { default } from './TopicsScreen'
+export { default } from './TopicsScreen';

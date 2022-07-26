@@ -1,1 +1,1 @@
-export { default } from './TopicCustomBtn'
+export { default } from './TopicCustomBtn';

@@ -1,1 +1,1 @@
-export { default } from './QuizScreen'
+export { default } from './QuizScreen';

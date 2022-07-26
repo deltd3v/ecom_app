@@ -1,1 +1,1 @@
-export { default } from './TopicResourseSection'
+export { default } from './TopicResourseSection';
