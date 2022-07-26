@@ -1,9 +1,6 @@
-import { TopicT } from "../../types/models";
-import { groupByLevel } from "./groupByLevel.util";
+import { TopicT } from "../types/models.d";
 
-
-
-const randomImg = 'https://source.unsplash.com/random/200x200?sig=2'
+export const randomImg = 'https://source.unsplash.com/random/200x200?sig=2'
 
 export const topics: TopicT[] = ([
     {
@@ -121,7 +118,6 @@ export const topics: TopicT[] = ([
     }
 ])
 
-export const levels = groupByLevel(topics)
 
 /*
 

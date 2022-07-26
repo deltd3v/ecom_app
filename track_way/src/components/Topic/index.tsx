@@ -1,1 +1,1 @@
-export {default} from './Topic.component'
+export { default } from './Topic.component'

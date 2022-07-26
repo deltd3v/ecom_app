@@ -1,16 +1,14 @@
-import { Alert, ScrollView, StyleSheet } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Colors from '../../constants/Colors'
 import TopicResourceItem from '../../components/TopicResourceItem'
 import { RootStackParamList } from '../../types/types.d'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { topics } from '../../components/Topic/topic.data'
-import { TopicT } from '../../types/models'
+import { TopicT } from '../../types/models.d'
 import Markdown from 'react-native-markdown-display'
 import TopicResourseSection from '../../components/TopicResourseSection'
 import TopicCustomBtn from '../../components/TopicCustomBtn'
-
-
+import { topics } from '../../data/topic'
 
 type TopicScreenProps = NativeStackScreenProps<RootStackParamList, 'Topic'>;
 
@@ -20,6 +18,7 @@ const TopicSreen: React.FC<TopicScreenProps> = (p) => {
 
   useEffect(() => {
     setTopic(topics.filter(t => t.id === p.route.params.id)[0]);
+
     p.navigation.setOptions({ title: topic?.title })
   }, [topic])
 
@@ -39,7 +38,6 @@ const TopicSreen: React.FC<TopicScreenProps> = (p) => {
           <TopicResourceItem isFinal={i + 1 == topic.material?.length} idx={i} key={r.id} {...r} />
         )}
       </TopicResourseSection>
-
 
       <TopicResourseSection visible={!!topic?.ctxt} title="Context" >
         {topic?.ctxt &&

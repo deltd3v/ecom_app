@@ -1,13 +1,11 @@
-import { StyleSheet, FlatList, Text, View, FlatListProps } from 'react-native'
+import { StyleSheet, FlatList, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Topic from '../../components/Topic'
 import TopicsGroupRow from '../../components/TopicsGroupRow'
-import { topics } from '../../components/Topic/topic.data'
-import { groupByLevel } from '../../components/Topic/groupByLevel.util'
-import { getCurrentActiveLevel } from '../../components/Topic/getCurrentActiveLevel.util'
-import { TopicT } from '../../types/models'
-
-
+import { topics } from '../../data/topic'
+import { groupByLevel } from '../../util/groupByLevel'
+import { getCurrentActiveLevel } from '../../util/getCurrentActiveLevel'
+import { TopicT } from '../../types/models.d'
 
 const TopicsScreen = () => {
   const [levels, setLevels] = useState([] as TopicT[][]);

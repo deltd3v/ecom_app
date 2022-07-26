@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { TopicResourceItemT } from '../../types/models'
+import { TopicResourceItemT } from '../../types/models.d'
 import { Feather } from '@expo/vector-icons'
 import * as WebBrowser from 'expo-web-browser'
 import Colors from '../../constants/Colors'

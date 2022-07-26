@@ -4,7 +4,7 @@ import Colors from '../../constants/Colors'
 import ProgressCircle from '../ProgressCircle'
 import { useWindowDimensions } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import { TopicT } from '../../types/models'
+import { TopicT } from '../../types/models.d'
 
 const Topic: React.FC<{ locked: boolean; currentLevel: number; } & TopicT> = (p) => {
     const { width, height } = useWindowDimensions()
