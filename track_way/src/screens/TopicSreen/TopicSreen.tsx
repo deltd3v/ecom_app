@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Alert, ScrollView, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Colors from '../../constants/Colors'
 import TopicResourceItem from '../../components/TopicResourceItem'
@@ -8,9 +8,13 @@ import { topics } from '../../components/Topic/topic.data'
 import { TopicT } from '../../types/models'
 import Markdown from 'react-native-markdown-display'
 import TopicResourseSection from '../../components/TopicResourseSection'
-export type Props = NativeStackScreenProps<RootStackParamList, 'Topic'>;
+import TopicCustomBtn from '../../components/TopicCustomBtn'
 
-const TopicSreen: React.FC<Props> = (p) => {
+
+
+type TopicScreenProps = NativeStackScreenProps<RootStackParamList, 'Topic'>;
+
+const TopicSreen: React.FC<TopicScreenProps> = (p) => {
 
   const [topic, setTopic] = useState<TopicT>()
 
@@ -24,9 +28,10 @@ const TopicSreen: React.FC<Props> = (p) => {
     <ScrollView style={styles.container}>
 
       <TopicResourseSection visible={!!topic?.description} title="Description" >
-        {topic?.description && <Markdown>{
-          topic?.description
-        }</Markdown>}
+        {topic?.description &&
+          <Markdown>{
+            topic?.description
+          }</Markdown>}
       </TopicResourseSection>
 
       <TopicResourseSection visible={!!topic?.material} title="Material" >
@@ -37,9 +42,11 @@ const TopicSreen: React.FC<Props> = (p) => {
 
 
       <TopicResourseSection visible={!!topic?.ctxt} title="Context" >
-        {topic?.ctxt && <Markdown>{
-          topic?.ctxt
-        }</Markdown>}
+        {topic?.ctxt &&
+          //@ts-ignore
+          <Markdown>{
+            topic?.ctxt
+          }</Markdown>}
       </TopicResourseSection>
 
       <TopicResourseSection visible={!!topic?.exercises} title="Exercises" >
@@ -48,9 +55,16 @@ const TopicSreen: React.FC<Props> = (p) => {
         )}
       </TopicResourseSection>
 
+      <TopicCustomBtn title="Start" onPress={onStartBtnPress} />
 
     </ScrollView>
   )
+
+  function onStartBtnPress() {
+
+    p.navigation.navigate('Quiz', { id: '123' });
+
+  }
 }
 
 export default TopicSreen
