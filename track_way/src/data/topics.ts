@@ -2,7 +2,7 @@ import { TopicT } from "../types/models.d";
 
 export const randomImg = 'https://source.unsplash.com/random/200x200?sig=2'
 
-export const topics: TopicT[] = ([
+const topics: TopicT[] = ([
     {
         id: "1",
         title: "Intro",
@@ -118,7 +118,7 @@ export const topics: TopicT[] = ([
     }
 ])
 
-
+export default topics
 /*
 
 source: https://commons.wikimedia.org/wiki/Star_symbol

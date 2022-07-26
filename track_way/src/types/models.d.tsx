@@ -16,3 +16,10 @@ export type TopicResourceItemT = {
     url?: string;
     completed?: boolean;
 }
+
+export type QuizT = {
+    id?: string;
+    question?: string;
+    imageUrl?: string;
+    content?: string;
+}

@@ -2,10 +2,10 @@ import { StyleSheet, FlatList, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Topic from '../../components/Topic'
 import TopicsGroupRow from '../../components/TopicsGroupRow'
-import { topics } from '../../data/topic'
 import { groupByLevel } from '../../util/groupByLevel'
 import { getCurrentActiveLevel } from '../../util/getCurrentActiveLevel'
 import { TopicT } from '../../types/models.d'
+
 
 const TopicsScreen = () => {
   const [levels, setLevels] = useState([] as TopicT[][]);
@@ -13,7 +13,8 @@ const TopicsScreen = () => {
   const [currentLevel, setCurrentLevel] = useState(1);
 
   useEffect(() => {
-    setLevels(groupByLevel(topics))
+    import("../../data/topics").then((m) => setLevels(groupByLevel(m.default)));
+    console.log('ha');
     setCurrentLevel(getCurrentActiveLevel(levels))
   }, [currentLevel])
 

@@ -1,20 +1,34 @@
 import { ScrollView, StyleSheet, Image, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Colors from '../../constants/Colors'
+import Markdown from 'react-native-markdown-display'
+import { quizes } from '../../data'
+import { QuizT } from '../../types/models.d'
+
 
 const QuizScreen = () => {
-    return (
-        <ScrollView style={styles.container}>
-            <Text style={styles.question}>
-                Select the right answer
-            </Text>
-            <Image style={styles.image}
-                resizeMode={'contain'}
-                source={{
-                    uri: 'https://raw.githubusercontent.com/deltd3v/track_way/main/track_way/assets/carbon%20(1).png'
-                }} />
 
-        </ScrollView>
+    const [qs, setQs] = useState({} as QuizT[])
+    const [q, setQ] = useState({} as QuizT)
+
+    useEffect(() => {
+        import("../../data/quizes").then((m) => setQs(m.default));
+        console.log('ha');
+        setQ(qs[1]);
+    }, [qs])
+
+    return (
+        <View style={styles.container}>
+
+            {!!q &&
+                <>
+                    <Text style={styles.question}>{q.question}</Text>
+                    {q.imageUrl && <Image resizeMode='contain' style={styles.image} source={{ uri: q.imageUrl }} />}
+                    {!!q.content && <Markdown>{q.content}</Markdown>}
+                </>
+            }
+
+        </View>
     )
 }
 
@@ -28,7 +42,8 @@ const styles = StyleSheet.create({
     question: {
         fontSize: 20,
         fontWeight: '600',
-        color: Colors.light.dark
+        color: Colors.light.dark,
+        marginVertical: 10,
     },
     image: {
         aspectRatio: 1,

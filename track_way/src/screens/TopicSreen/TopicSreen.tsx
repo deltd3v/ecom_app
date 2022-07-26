@@ -8,7 +8,7 @@ import { TopicT } from '../../types/models.d'
 import Markdown from 'react-native-markdown-display'
 import TopicResourseSection from '../../components/TopicResourseSection'
 import TopicCustomBtn from '../../components/TopicCustomBtn'
-import { topics } from '../../data/topic'
+import { topics } from '../../data'
 
 type TopicScreenProps = NativeStackScreenProps<RootStackParamList, 'Topic'>;
 
