@@ -10,7 +10,7 @@ import { QuizChoiceT, QuizT } from '../../types/models.d';
 const QuizScreen = () => {
     const [qs, setQs] = useState({} as QuizT[]);
     const [q, setQ] = useState({} as QuizT);
-    const [selectedChoices, setSelectedChoices] = useState<QuizChoiceT[]>([])
+    const [answers, setSelectedAnwers] = useState<QuizChoiceT[]>([])
 
     useEffect(() => {
         import('../../data/quizes').then((m) => setQs(m.default));
@@ -18,11 +18,13 @@ const QuizScreen = () => {
     }, []);
 
 
-    let onChoiceSelect = (ch: QuizChoiceT) => setSelectedChoices(
-        chs =>
-            chs.includes(ch) ?
-                chs.filter(c => c !== ch) :
-                (q.type === "SINGLE_ANSWER" ? [ch] : [...chs, ch])
+    let onChoiceSelect = (ch: QuizChoiceT) => setSelectedAnwers(
+        answers =>
+            answers.includes(ch) ?
+                answers.filter(c => c !== ch) :
+                (q.answers?.length! > 1 ?
+                    [...answers, ch] :
+                    [ch])
     )
 
 
@@ -36,7 +38,6 @@ const QuizScreen = () => {
                     {q.imageUrl && (
                         <Image
                             resizeMode="contain"
-
                             style={styles.image}
                             source={{ uri: q.imageUrl }}
                         />
@@ -48,7 +49,7 @@ const QuizScreen = () => {
                             key={`i-${i}`}
                             choice={ch}
                             onChoiceSelect={onChoiceSelect}
-                            selected={selectedChoices.includes(ch)}
+                            selected={answers.includes(ch)}
                         />
                     )}
                 </>
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: '600',
         color: Colors.light.dark,
-        marginVertical: 10,
+        marginVertical: 0,
     },
     image: {
         aspectRatio: 1,
@@ -78,3 +79,10 @@ const styles = StyleSheet.create({
         height: 'auto',
     },
 });
+
+
+
+const user = ["username", "password", "age"];
+
+const userA = ["evans", "$.3x!-3f€4o/5", 33];
+

@@ -4,16 +4,14 @@ const quizes = [
 	{
 		id: '1',
 		question: 'What will be the output ?',
-		type: "SINGLE_ANSWER",
 		imageUrl:
 			'https://raw.githubusercontent.com/deltd3v/track_way/main/track_way/assets/q1.png',
 		choices: ["A", "B", "C", "D"],
-		answer: ["C"]
+		answer: ["C", "B"]
 	},
 	{
 		id: '2',
 		question: 'Which of these is true ?',
-		type: "MULTIPLE_ANSWERS",
 		// imageUrl: "https://raw.githubusercontent.com/deltd3v/track_way/main/track_way/assets/q1.png",
 		content: `# **This is some *bold* text**
 \`\`\` js

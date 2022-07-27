@@ -22,7 +22,6 @@ export type QuizT = {
 	question?: string;
 	imageUrl?: string;
 	content?: string;
-	type?: "SINGLE_ANSWER" | "MULTIPLE_ANSWERS";
 	choices?: QuizChoiceT[];
 	answers?: QuizAnswerT[];
 };
