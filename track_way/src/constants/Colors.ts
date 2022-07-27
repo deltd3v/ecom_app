@@ -6,6 +6,7 @@ export default {
 		text: '#000',
 		background: '#fff',
 		tint: tintColorLight,
+		lightGray: '#ccc',
 		tabIconDefault: '#ccc',
 		tabIconSelected: tintColorLight,
 
@@ -13,6 +14,7 @@ export default {
 		primary: '#40F99B',
 		secondary: '#E85D75',
 		tertiary: '#9D69A3',
+		quatenary: '#2f95dc',
 		dark: '#61707D',
 	},
 	dark: {
@@ -20,12 +22,14 @@ export default {
 		text: '#fff',
 		background: '#000',
 		tint: tintColorDark,
+		lightGray: '#ccc',
 		tabIconDefault: '#ccc',
 		tabIconSelected: tintColorDark,
 
 		primary: '#40F99B',
 		secondary: '#E85D75',
 		tertiary: '#9D69A3',
+		quatenary: '#2f95dc',
 		dark: '#61707D',
 	},
 };

@@ -22,4 +22,10 @@ export type QuizT = {
 	question?: string;
 	imageUrl?: string;
 	content?: string;
+	type?: "SINGLE_ANSWER" | "MULTIPLE_ANSWERS";
+	choices?: QuizChoiceT[];
+	answers?: QuizAnswerT[];
 };
+
+export type QuizChoiceT = number | boolean | string
+export type QuizAnswerT = number | boolean | string 

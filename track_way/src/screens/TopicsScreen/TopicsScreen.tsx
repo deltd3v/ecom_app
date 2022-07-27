@@ -15,7 +15,6 @@ const TopicsScreen = () => {
 
 	useEffect(() => {
 		import('../../data/topics').then((m) => setLevels(groupByLevel(m.default)));
-		console.log('ha');
 		setCurrentLevel(getCurrentActiveLevel(levels));
 	}, [currentLevel]);
 
