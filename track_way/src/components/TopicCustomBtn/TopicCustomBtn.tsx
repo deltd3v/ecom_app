@@ -17,28 +17,29 @@ interface P extends PressableProps {
 }
 
 const TopicCustomBtn: React.FC<P> = (p) => {
-
-
 	return (
 		<Pressable
 			style={[
 				styles.btn,
 				p.style as any,
-				p.disabled ? {
-					backgroundColor: Colors.light.lightGray,
-				} : {
-					backgroundColor: Colors.light.primary,
-				}
+				p.disabled
+					? {
+							backgroundColor: Colors.light.lightGray,
+					  }
+					: {
+							backgroundColor: Colors.light.primary,
+					  },
 			]}
 			disabled={p.disabled}
-			{...p}>
+			{...p}
+		>
 			<>
 				{p.title && <Text style={styles.text}> {p.title}</Text>}
 				{p.children && p.children}
 			</>
 		</Pressable>
-	)
-}
+	);
+};
 
 export default TopicCustomBtn;
 

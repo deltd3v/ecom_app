@@ -26,5 +26,5 @@ export type QuizT = {
 	answers?: QuizAnswerT[];
 };
 
-export type QuizChoiceT = number | boolean | string
-export type QuizAnswerT = number | boolean | string 
+export type QuizChoiceT = number | boolean | string;
+export type QuizAnswerT = number | boolean | string;

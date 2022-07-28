@@ -6,9 +6,8 @@ const quizes = [
 		question: 'What will be the output ?',
 		imageUrl:
 			'https://raw.githubusercontent.com/deltd3v/track_way/main/track_way/assets/q1.png',
-		choices: ["190", "180", "number", "string"],
-		answers: ["string"]
-
+		choices: ['190', '180', 'number', 'string'],
+		answers: ['string'],
 	},
 	{
 		id: '2',
@@ -20,8 +19,8 @@ const quizes = [
 	console.log(msg) // Hello World
 \`\`\`
 	`,
-		choices: ["true", "blah", "false"],
-		answers: ["true", "blah"],
+		choices: ['true', 'blah', 'false'],
+		answers: ['true', 'blah'],
 	},
 ] as QuizT[];
 
