@@ -20,8 +20,8 @@ const quizes = [
 	console.log(msg) // Hello World
 \`\`\`
 	`,
-		choices: ["true", "false"],
-		answers: ["true"],
+		choices: ["true", "blah", "false"],
+		answers: ["true", "blah"],
 	},
 ] as QuizT[];
 

@@ -13,35 +13,11 @@ const QuizScreen = () => {
     const [q, setQ] = useState({} as QuizT);
     const [answers, setSelectedAnwers] = useState<QuizChoiceT[]>([])
 
-
-
-
-    let onChoiceSelect = (ch: QuizChoiceT) => setSelectedAnwers(
-        answers =>
-            answers.includes(ch) ?
-                answers.filter(c => c !== ch) :
-                (q.answers?.length! > 1 ?
-                    [...answers, ch] :
-                    [ch])
-
-    )
-
     useEffect(() => {
         import('../../data/quizes').then((m) => setQs(m.default));
-        setQ(qs[0]);
-
-
-
+        setQ(qs[1]);
     }, [answers]);
 
-
-    const wasAnsweredCorrectly = () => {
-        if (answers.length === q.answers?.length) {
-            return q.answers.every(an => answers.includes(an));
-        }
-
-        return false;
-    }
 
     return (
 
@@ -69,7 +45,6 @@ const QuizScreen = () => {
                     )}
 
                     <View style={styles.btnContainer}>
-
                         <TopicCustomBtn
                             onPress={onSubmit}
                             disabled={answers.length == 0}
@@ -82,9 +57,32 @@ const QuizScreen = () => {
         </ScrollView>
     );
 
+    function wasAnsweredCorrectly() {
+        return (answers.length !== q.answers?.length) ?
+            false : q.answers.every(a => answers.includes(a));
+    }
+
+
+
+    function onChoiceSelect(ch: QuizChoiceT) {
+        setSelectedAnwers(
+            answers =>
+                answers.includes(ch) ?
+                    answers.filter(c => c !== ch) :
+                    (q.answers?.length! > 1 ?
+                        [...answers, ch] :
+                        [ch])
+
+        );
+
+
+    }
+
     function onSubmit() {
         wasAnsweredCorrectly() ? Alert.alert("✅ Correct !", "The answer was correct !") : Alert.alert("❌ Incorrect !", "The question was answered incorrectly !!");
+        setSelectedAnwers([])
     }
+
 };
 
 export default QuizScreen;
