@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import {
 	Alert,
@@ -17,34 +17,38 @@ interface P extends PressableProps {
 }
 
 const TopicCustomBtn: React.FC<P> = (p) => {
+
+
 	return (
 		<Pressable
-			{...p}
-			style={({ pressed }) => ({
-				...styles.btn,
-				backgroundColor: pressed ? Colors.light.dark : Colors.light.primary,
-			})}
-		>
+			style={[
+				styles.btn,
+				p.style as any,
+				p.disabled ? {
+					backgroundColor: Colors.light.lightGray,
+				} : {
+					backgroundColor: Colors.light.primary,
+				}
+			]}
+			disabled={p.disabled}
+			{...p}>
 			<>
 				{p.title && <Text style={styles.text}> {p.title}</Text>}
 				{p.children && p.children}
 			</>
 		</Pressable>
-	);
-};
+	)
+}
 
 export default TopicCustomBtn;
 
 const styles = StyleSheet.create({
 	btn: {
-		flexDirection: 'row',
-		justifyContent: 'center',
-		width: 'auto',
-		marginVertical: 20,
-		paddingVertical: 10,
-		paddingHorizontal: 10,
-		borderRadius: 8,
-		// ({pressed}) => ({backgroundColor: pressed ? Colors.light.tertiary :Colors.light.dark}), // why isn't this possible ?
+		padding: 10,
+		borderRadius: 5,
+		marginVertical: 5,
+		alignItems: 'center',
+		justifyItems: 'center',
 	},
 	text: {
 		fontSize: 16,

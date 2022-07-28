@@ -25,7 +25,7 @@ const TopicSreen: React.FC<TopicScreenProps> = (p) => {
 	}, [topic]);
 
 	return (
-		<ScrollView style={styles.container}>
+		<ScrollView contentContainerStyle={styles.container}>
 			<TopicResourseSection visible={!!topic?.description} title="Description">
 				{topic?.description && <Markdown>{topic?.description}</Markdown>}
 			</TopicResourseSection>
@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		padding: 10,
+		minHeight: '100%',
 		backgroundColor: Colors.light.white,
 	},
 	title: {

@@ -17,7 +17,7 @@ const QuizChoice: React.FC<QuizChoiceProps> = (p) => {
                 styles.container,
 
                 p.selected ?
-                    { borderColor: Colors.light.quatenary } :
+                    { borderColor: Colors.light.primary } :
                     { borderColor: Colors.light.lightGray }
 
             ]}
@@ -27,7 +27,7 @@ const QuizChoice: React.FC<QuizChoiceProps> = (p) => {
                 styles.text,
 
                 p.selected ?
-                    { color: Colors.light.quatenary } :
+                    { color: Colors.light.primary } :
                     { color: Colors.light.lightGray }
 
             ]}>
