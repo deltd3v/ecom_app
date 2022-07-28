@@ -7,9 +7,8 @@ const quizes = [
 		imageUrl:
 			'https://raw.githubusercontent.com/deltd3v/track_way/main/track_way/assets/q1.png',
 		choices: ["190", "180", "number", "string"],
-		answer: ["string"]
-		// choices: [],
-		// answers: [],
+		answers: ["string"]
+
 	},
 	{
 		id: '2',

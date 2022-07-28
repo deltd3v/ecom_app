@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { GestureResponderEvent, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Alert, GestureResponderEvent, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Markdown from 'react-native-markdown-display';
 import QuizChoice from '../../components/QuizChoice';
 import TopicCustomBtn from '../../components/TopicCustomBtn';
@@ -35,6 +35,14 @@ const QuizScreen = () => {
     }, [answers]);
 
 
+    const wasAnsweredCorrectly = () => {
+        if (answers.length === q.answers?.length) {
+            return q.answers.every(an => answers.includes(an));
+        }
+
+        return false;
+    }
+
     return (
 
         <ScrollView contentContainerStyle={styles.container}>
@@ -65,7 +73,7 @@ const QuizScreen = () => {
                         <TopicCustomBtn
                             onPress={onSubmit}
                             disabled={answers.length == 0}
-                            title="submit">
+                            title="Submit">
                         </TopicCustomBtn>
                     </View>
 
@@ -75,7 +83,7 @@ const QuizScreen = () => {
     );
 
     function onSubmit() {
-        console.warn('submit pressed')
+        wasAnsweredCorrectly() ? Alert.alert("✅ Correct !", "The answer was correct !") : Alert.alert("❌ Incorrect !", "The question was answered incorrectly !!");
     }
 };
 
