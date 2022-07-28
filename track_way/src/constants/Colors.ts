@@ -10,8 +10,8 @@ export default {
 		tabIconDefault: '#ccc',
 		tabIconSelected: tintColorLight,
 
-		bgError: "#fbefef",
-		bgSuccess: "#e8faf1",
+		bgError: '#fbefef',
+		bgSuccess: '#e8faf1',
 
 		white: '#fff',
 		primary: '#40F99B',
@@ -29,8 +29,8 @@ export default {
 		tabIconDefault: '#ccc',
 		tabIconSelected: tintColorDark,
 
-		bgError: "#fbefef",
-		bgSuccess: "#c7f0db",
+		bgError: '#fbefef',
+		bgSuccess: '#c7f0db',
 
 		primary: '#40F99B',
 		secondary: '#E85D75',

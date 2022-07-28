@@ -9,47 +9,49 @@ import Colors from '../../constants/Colors';
 import type { QuizChoiceT, QuizT } from '../../types/models.d';
 
 const QuizScreen = () => {
-	const [qs, setQs] = useState({} as QuizT[]);
-	const [q, setQ] = useState({} as QuizT);
-	const [answers, setSelectedAnwers] = useState<QuizChoiceT[]>([]);
-	const [passed, setPassed] = useState<boolean | undefined>()
+	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+	const [questions, setQuestions] = useState({} as QuizT[]);
+	const [currentQuestion, setCurrentQuestion] = useState({} as QuizT);
+	const [choices, setChoices] = useState<QuizChoiceT[]>([]);
+	const [passed, setPassed] = useState<boolean | undefined>();
 
 	useEffect(() => {
-		import('../../data/quizes').then((m) => setQs(m.default));
-		setQ(qs[1]);
-	}, [answers]);
+		import('../../data/quizes').then((m) => setQuestions(m.default));
+		setCurrentQuestion(questions[currentQuestionIndex]);
+	}, [currentQuestionIndex]);
 
 	return (
 		<>
 			<ScrollView contentContainerStyle={styles.container}>
-
-				{!!q && (
+				{!!currentQuestion && (
 					<>
-						<Text style={styles.question}>{q.question}</Text>
+						<Text style={styles.question}>{currentQuestion.question}</Text>
 
-						{q.imageUrl && (
+						{currentQuestion.imageUrl && (
 							<Image
 								resizeMode="contain"
 								style={styles.image}
-								source={{ uri: q.imageUrl }}
+								source={{ uri: currentQuestion.imageUrl }}
 							/>
 						)}
-						{!!q.content && <Markdown>{q.content}</Markdown>}
+						{!!currentQuestion.content && (
+							<Markdown>{currentQuestion.content}</Markdown>
+						)}
 
-						{q.choices?.map((ch, i) => (
+						{currentQuestion.choices?.map((ch, i) => (
 							<QuizChoice
 								key={`i-${i}`}
 								choice={ch}
 								disabled={passed != undefined}
 								onChoiceSelect={onChoiceSelect}
-								selected={answers.includes(ch)}
+								selected={choices.includes(ch)}
 							/>
 						))}
 
 						<View style={styles.btnContainer}>
 							<TopicCustomBtn
 								onPress={onSubmit}
-								disabled={answers.length == 0}
+								disabled={choices.length == 0}
 								title="Submit"
 							></TopicCustomBtn>
 						</View>
@@ -57,60 +59,94 @@ const QuizScreen = () => {
 				)}
 			</ScrollView>
 
-			{passed !== undefined && passed && <View style={[styles.feedBackBoxCommonStyles, styles.correctfeedBackContainer]}>
-				<Text style={[styles.feedBackTitleCommonStyles, styles.correctFeedBackTitle]}>Correct !!</Text>
-				<TopicCustomBtn
-					onPress={onContinue}
-					title="Continue"
-				></TopicCustomBtn>
-			</View>}
+			{passed !== undefined && passed && (
+				<View
+					style={[
+						styles.feedBackBoxCommonStyles,
+						styles.correctfeedBackContainer,
+					]}
+				>
+					<Text
+						style={[
+							styles.feedBackTitleCommonStyles,
+							styles.correctFeedBackTitle,
+						]}
+					>
+						Correct !!
+					</Text>
+					<TopicCustomBtn
+						onPress={onContinue}
+						title="Continue"
+					></TopicCustomBtn>
+				</View>
+			)}
 
-			{passed !== undefined && !passed && <View style={[styles.feedBackBoxCommonStyles, styles.inCorrectfeedBackContainer]}>
-				<Text style={[styles.feedBackTitleCommonStyles, styles.inCorrectFeedBackTitle]}>Incorrect !!</Text>
-				<TopicCustomBtn
-					style={[styles.feedBackBtnCommonStyles, styles.feedBackIncorrectBtn]}
-					onPress={onContinue}
-					title="Try again"
-				></TopicCustomBtn>
-			</View>}
-
+			{passed !== undefined && !passed && (
+				<View
+					style={[
+						styles.feedBackBoxCommonStyles,
+						styles.inCorrectfeedBackContainer,
+					]}
+				>
+					<Text
+						style={[
+							styles.feedBackTitleCommonStyles,
+							styles.inCorrectFeedBackTitle,
+						]}
+					>
+						Incorrect !!
+					</Text>
+					<TopicCustomBtn
+						style={[
+							styles.feedBackBtnCommonStyles,
+							styles.feedBackIncorrectBtn,
+						]}
+						onPress={onContinue}
+						title="Try again"
+					></TopicCustomBtn>
+				</View>
+			)}
 		</>
 	);
 
-
-
 	function onChoiceSelect(ch: QuizChoiceT) {
-		setSelectedAnwers((answers) =>
+		setChoices((answers) =>
 			answers.includes(ch)
 				? answers.filter((c) => c !== ch)
-				: q.answers?.length! > 1
-					? [...answers, ch]
-					: [ch]
+				: currentQuestion.answers?.length! > 1
+				? [...answers, ch]
+				: [ch]
 		);
 	}
 
 	function onSubmit() {
 		function wasAnsweredCorrectly() {
-			return answers.length !== q.answers?.length
+			return choices.length !== currentQuestion.answers?.length
 				? false
-				: q.answers.every((a) => answers.includes(a));
+				: currentQuestion.answers.every((a) => choices.includes(a));
 		}
 
 		wasAnsweredCorrectly()
-			? (setPassed(true), Alert.alert('✅ Correct !', 'The answer was correct !'))
-			: (setPassed(false), Alert.alert(
-				'❌ Incorrect !',
-				'The question was answered incorrectly !!'
-			));
-
-		// reset state
-		setSelectedAnwers([]);
+			? (setPassed(true),
+			  Alert.alert('✅ Correct !', 'The answer was correct !'))
+			: (setPassed(false),
+			  Alert.alert(
+					'❌ Incorrect !',
+					'The question was answered incorrectly !!'
+			  ));
 	}
 
 	function onContinue() {
+		if (currentQuestionIndex === questions.length - 1) {
+			Alert.alert('🏆 Quiz fin !! ', 'You are brilliant');
+			return;
+		}
+
 		// reset state
 		setPassed(undefined);
+		setChoices([]);
 
+		setCurrentQuestionIndex((idx) => idx + 1);
 	}
 };
 
@@ -186,7 +222,6 @@ const styles = StyleSheet.create({
 	},
 	inCorrectFeedBackTitle: {
 		color: Colors.light.secondary,
-
 	},
 	feedBackBtnCommonStyles: {
 		alignItems: 'center',
