@@ -1,4 +1,4 @@
-import { TopicT } from '../types/models.d';
+import type { TopicT } from '../types/models.d';
 
 // sort the list of topics into different arrays labeled by the level
 export const groupByLevel = (topics: TopicT[]) => {

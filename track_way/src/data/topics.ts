@@ -1,4 +1,4 @@
-import { TopicT } from '../types/models.d';
+import type { TopicT } from '../types/models.d';
 
 export const randomImg = 'https://source.unsplash.com/random/200x200?sig=2';
 

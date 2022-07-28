@@ -24,7 +24,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import QuizScreen from '../screens/QuizScreen';
 import TopicSreen from '../screens/TopicSreen';
 import ModuleScreen from '../screens/TopicsScreen';
-import {
+import type {
 	RootStackParamList,
 	RootTabParamList,
 	RootTabScreenProps,

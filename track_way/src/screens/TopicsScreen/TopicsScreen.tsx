@@ -4,7 +4,7 @@ import { FlatList, StyleSheet, View } from 'react-native';
 
 import Topic from '../../components/Topic';
 import TopicsGroupRow from '../../components/TopicsGroupRow';
-import { TopicT } from '../../types/models.d';
+import type { TopicT } from '../../types/models.d';
 import { getCurrentActiveLevel } from '../../util/getCurrentActiveLevel';
 import { groupByLevel } from '../../util/groupByLevel';
 

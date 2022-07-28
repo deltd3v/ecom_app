@@ -10,8 +10,8 @@ import TopicResourceItem from '../../components/TopicResourceItem';
 import TopicResourseSection from '../../components/TopicResourseSection';
 import Colors from '../../constants/Colors';
 import { topics } from '../../data';
-import { TopicT } from '../../types/models.d';
-import { RootStackParamList } from '../../types/types.d';
+import type { TopicT } from '../../types/models.d';
+import type { RootStackParamList } from '../../types/types.d';
 
 type TopicScreenProps = NativeStackScreenProps<RootStackParamList, 'Topic'>;
 

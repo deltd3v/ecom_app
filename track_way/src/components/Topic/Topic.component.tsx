@@ -6,7 +6,7 @@ import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useWindowDimensions } from 'react-native';
 
 import Colors from '../../constants/Colors';
-import { TopicT } from '../../types/models.d';
+import type { TopicT } from '../../types/models.d';
 import ProgressCircle from '../ProgressCircle';
 
 const Topic: React.FC<{ locked: boolean; currentLevel: number } & TopicT> = (

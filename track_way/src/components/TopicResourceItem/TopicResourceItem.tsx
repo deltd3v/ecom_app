@@ -6,7 +6,7 @@ import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import Colors from '../../constants/Colors';
-import { TopicResourceItemT } from '../../types/models.d';
+import type { TopicResourceItemT } from '../../types/models.d';
 
 const TopicResourceItem: React.FC<
 	{ idx?: number; isFinal?: boolean } & TopicResourceItemT

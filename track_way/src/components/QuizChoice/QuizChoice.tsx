@@ -4,9 +4,9 @@ import { Pressable, StyleSheet, Text } from 'react-native';
 import { PressableProps } from 'react-native';
 
 import Colors from '../../constants/Colors';
-import { QuizChoiceT } from '../../types/models.d';
+import type { QuizChoiceT } from '../../types/models.d';
 
-interface QuizChoiceProps {
+interface QuizChoiceProps extends PressableProps {
 	choice?: QuizChoiceT;
 	selected?: boolean;
 	onChoiceSelect: (ch: QuizChoiceT) => void;
@@ -23,6 +23,7 @@ const QuizChoice: React.FC<QuizChoiceProps> = (p) => {
 					: { borderColor: Colors.light.lightGray },
 			]}
 			onPress={(_) => p.onChoiceSelect(p.choice!)}
+			{...p}
 		>
 			<Text
 				style={[

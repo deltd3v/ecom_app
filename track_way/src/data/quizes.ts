@@ -1,4 +1,4 @@
-import { QuizT } from '../types/models.d';
+import type { QuizT } from '../types/models.d';
 
 const quizes = [
 	{
