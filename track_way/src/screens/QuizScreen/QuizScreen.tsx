@@ -10,15 +10,22 @@ import type { QuizChoiceT, QuizT } from '../../types/models.d';
 
 const QuizScreen = () => {
 	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-	const [questions, setQuestions] = useState({} as QuizT[]);
-	const [currentQuestion, setCurrentQuestion] = useState({} as QuizT);
+	const [questions, setQuestions] = useState<QuizT[]>([]);
+	const [currentQuestion, setCurrentQuestion] = useState<QuizT>({});
 	const [choices, setChoices] = useState<QuizChoiceT[]>([]);
 	const [passed, setPassed] = useState<boolean | undefined>();
+	const [score, setScore] = useState(0);
 
 	useEffect(() => {
 		import('../../data/quizes').then((m) => setQuestions(m.default));
+	}, []);
+
+	useEffect(() => {
+		// reset state
 		setCurrentQuestion(questions[currentQuestionIndex]);
-	}, [currentQuestionIndex]);
+		setPassed(undefined);
+		setChoices([]);
+	}, [questions, currentQuestionIndex]);
 
 	return (
 		<>
@@ -34,25 +41,26 @@ const QuizScreen = () => {
 								source={{ uri: currentQuestion.imageUrl }}
 							/>
 						)}
+
 						{!!currentQuestion.content && (
 							<Markdown>{currentQuestion.content}</Markdown>
 						)}
 
-						{currentQuestion.choices?.map((ch, i) => (
-							<QuizChoice
-								key={`i-${i}`}
-								choice={ch}
-								disabled={passed != undefined}
-								onChoiceSelect={onChoiceSelect}
-								selected={choices.includes(ch)}
-							/>
-						))}
+						<View style={styles.choicesContainer}>
+							{currentQuestion.choices?.map((ch, i) => (
+								<QuizChoice
+									key={`i-${i}`}
+									choice={ch}
+									disabled={passed != undefined}
+									onChoiceSelect={onChoiceSelect}
+									selected={choices.includes(ch)}
+								/>
+							))}
 
-						<View style={styles.btnContainer}>
 							<TopicCustomBtn
 								onPress={onSubmit}
 								disabled={choices.length == 0}
-								title="Submit"
+								title="Check"
 							></TopicCustomBtn>
 						</View>
 					</>
@@ -126,27 +134,27 @@ const QuizScreen = () => {
 				: currentQuestion.answers.every((a) => choices.includes(a));
 		}
 
-		wasAnsweredCorrectly()
-			? (setPassed(true),
-			  Alert.alert('✅ Correct !', 'The answer was correct !'))
-			: (setPassed(false),
-			  Alert.alert(
-					'❌ Incorrect !',
-					'The question was answered incorrectly !!'
-			  ));
+		if (wasAnsweredCorrectly()) {
+			setPassed(true);
+			setScore((s) => s + 1);
+			Alert.alert('✅ Correct !', `Wow, you really know your stuff 😏`);
+			return;
+		} else {
+			setPassed(false);
+			Alert.alert('❌ Incorrect !', 'The question was answered inncorrect !!');
+			return;
+		}
 	}
 
 	function onContinue() {
-		if (currentQuestionIndex === questions.length - 1) {
-			Alert.alert('🏆 Quiz fin !! ', 'You are brilliant');
-			return;
-		}
-
-		// reset state
-		setPassed(undefined);
-		setChoices([]);
-
 		setCurrentQuestionIndex((idx) => idx + 1);
+		if (currentQuestionIndex === questions.length - 1) {
+			// alert msg
+			Alert.alert(
+				'🏆 Quiz Complete !',
+				`You scored ${score}/${questions.length} points !`
+			);
+		}
 	}
 };
 
@@ -171,7 +179,7 @@ const styles = StyleSheet.create({
 		minHeight: 300,
 	},
 
-	btnContainer: {
+	choicesContainer: {
 		width: '100%',
 		marginTop: 'auto',
 	},
