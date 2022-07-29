@@ -32,7 +32,7 @@ const QuizScreen = () => {
 			<ScrollView contentContainerStyle={styles.container}>
 				{!!currentQuestion && (
 					<>
-						<Text style={styles.question}>{currentQuestion.question}</Text>
+
 
 						{currentQuestion.imageUrl && (
 							<Image
@@ -122,8 +122,8 @@ const QuizScreen = () => {
 			answers.includes(ch)
 				? answers.filter((c) => c !== ch)
 				: currentQuestion.answers?.length! > 1
-				? [...answers, ch]
-				: [ch]
+					? [...answers, ch]
+					: [ch]
 		);
 	}
 
