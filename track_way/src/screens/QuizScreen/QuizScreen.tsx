@@ -4,6 +4,7 @@ import { Alert, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Markdown from 'react-native-markdown-display';
 
 import QuizChoice from '../../components/QuizChoice';
+import QuizProgressBar from '../../components/QuizProgressBar';
 import TopicCustomBtn from '../../components/TopicCustomBtn';
 import Colors from '../../constants/Colors';
 import type { QuizChoiceT, QuizT } from '../../types/models.d';
@@ -15,6 +16,7 @@ const QuizScreen = () => {
 	const [choices, setChoices] = useState<QuizChoiceT[]>([]);
 	const [passed, setPassed] = useState<boolean | undefined>();
 	const [score, setScore] = useState(0);
+	const [progress, setProgress] = useState(0);
 
 	useEffect(() => {
 		import('../../data/quizes').then((m) => setQuestions(m.default));
@@ -25,6 +27,7 @@ const QuizScreen = () => {
 		setCurrentQuestion(questions[currentQuestionIndex]);
 		setPassed(undefined);
 		setChoices([]);
+		setProgress((currentQuestionIndex / questions.length) * 100);
 	}, [questions, currentQuestionIndex]);
 
 	return (
@@ -32,7 +35,7 @@ const QuizScreen = () => {
 			<ScrollView contentContainerStyle={styles.container}>
 				{!!currentQuestion && (
 					<>
-
+						<QuizProgressBar progress={progress} />
 
 						{currentQuestion.imageUrl && (
 							<Image
@@ -122,8 +125,8 @@ const QuizScreen = () => {
 			answers.includes(ch)
 				? answers.filter((c) => c !== ch)
 				: currentQuestion.answers?.length! > 1
-					? [...answers, ch]
-					: [ch]
+				? [...answers, ch]
+				: [ch]
 		);
 	}
 
